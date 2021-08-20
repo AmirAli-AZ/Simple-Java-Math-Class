@@ -46,7 +46,7 @@ public class MathClass {
 			 return true;
 			}else{
 			
-			 for (int j = 2; j <= squareRoot(n); j++) { 
+			 for (int j = 2; j <= Math.sqrt(n); j++) { 
 				 if (n % j == 0){
 				  is_prime = false;
 				  break;
@@ -105,18 +105,5 @@ public class MathClass {
 		  double area_sphere = 4.0*PI*(radius*radius);
 		  return area_sphere;
 		}
-		// square root
-        public static double squareRoot(double number) {
-	      double temp;
-
-	      double sqr = number / 2;
-
-	      do {
-		     temp = sqr;
-		     sqr = (temp + (number / temp)) / 2;
-	      } while ((temp - sqr) != 0);
-
-	      return sqr;
-        }
 
 }
