@@ -111,56 +111,56 @@ public class MathClass {
         // convert bytes to kB , Mb , GB , TB, PB 
                 public static String getFileSize(String path){
 		  File file = new File(path);
-          if (file.exists() && !file.isDirectory()) {
-	          double filesize = getFileLength(path);
-	          double B = 1024;
-	          double KB = B * B;
-	          double MB = B * (B * B);
-	          double GB = B * (B * (B * B));
-	          double TB = B * (B * (B * (B * B)));
-	          String returnedSize = "";
-	          if (filesize < B) {
-			     returnedSize = String.valueOf((long)(filesize)).concat("B");
-	          }
-	          else {
+                  if (file.exists() && !file.isDirectory()) {
+	              double filesize = getFileLength(path);
+	              double B = 1024;
+	              double KB = B * B;
+	              double MB = B * (B * B);
+	              double GB = B * (B * (B * B));
+	              double TB = B * (B * (B * (B * B)));
+	               String returnedSize = "";
+	                if (filesize < B) {
+			    returnedSize = String.valueOf((long)(filesize)).concat("B");
+	                }
+	                else {
 			     if (filesize < KB) {
-					 returnedSize = new DecimalFormat("0.00").format(filesize / B).concat("KB");
+				 returnedSize = new DecimalFormat("0.00").format(filesize / B).concat("KB");
 			     }
 			     else {
-					if (filesize < MB) {
-						returnedSize = new DecimalFormat("0.00").format(filesize / KB).concat("MB");
+				if (filesize < MB) {
+				    returnedSize = new DecimalFormat("0.00").format(filesize / KB).concat("MB");
+				}
+				else {
+			            if (filesize < GB) {
+				        returnedSize = new DecimalFormat("0.00").format(filesize / MB).concat("GB");
+				    }
+				    else {
+					if (filesize < TB) {
+					    returnedSize = new DecimalFormat("0.00").format(filesize / GB).concat("TB");
 					}
 					else {
-					   if (filesize < GB) {
-						    returnedSize = new DecimalFormat("0.00").format(filesize / MB).concat("GB");
-					   }
-					   else {
-						 if (filesize < TB) {
-							 returnedSize = new DecimalFormat("0.00").format(filesize / GB).concat("TB");
-						 }
-						 else {
-							returnedSize = new DecimalFormat("0.00").format(filesize / TB).concat("PB");
-						 }
-					   }
+					   returnedSize = new DecimalFormat("0.00").format(filesize / TB).concat("PB");
 					}
-			     }
-	          }
+			           }
+			       }
+			   }
+	              }
 	          return returnedSize;
-          }
-          else {
-	        return "";
+                }
+                else {
+	            return "";
 
-		  }
 		}
+           }
         // bytes
         public static long getFileLength(String path){
-			File file = new File(path);
-			if (!file.exists()) return 0;
-            return file.length();
-		}
+	      File file = new File(path);
+	      if (!file.exists()) return 0;
+              return file.length();
+       }
 		// times
         // time unit method , if you want this method , first import , java.util.concurrent.TimeUnit
-        /*public static long MinutesToMilliSeconds(long timeInput){
+                /*public static long MinutesToMilliSeconds(long timeInput){
 		*   return TimeUnit.MINUTES.toMillis(timeInput);
 		*}
 		*public static long SecondsToMinutes(long timeInput){
