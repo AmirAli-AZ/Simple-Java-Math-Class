@@ -4,6 +4,8 @@ import java.util.Random;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.content.res.Resources;
+import java.io.File;
+import java.text.DecimalFormat;
 
 public class MathClass {
 	
@@ -105,5 +107,104 @@ public class MathClass {
 		  double area_sphere = 4.0*PI*(radius*radius);
 		  return area_sphere;
 		}
+		// file
+        // convert bytes to kB , Mb , GB , TB, PB 
+        public static String getFileSize(String path){
+		  File file = new File(path);
+          if (file.exists() && !file.isDirectory()) {
+	          double filesize = getFileLength(path);
+	          double B = 1024;
+	          double KB = B * B;
+	          double MB = B * (B * B);
+	          double GB = B * (B * (B * B));
+	          double TB = B * (B * (B * (B * B)));
+	          String returnedSize = "";
+	          if (filesize < B) {
+			     returnedSize = String.valueOf((long)(filesize)).concat("B");
+	          }
+	          else {
+			     if (filesize < KB) {
+					 returnedSize = new DecimalFormat("0.00").format(filesize / B).concat("KB");
+			     }
+			     else {
+					if (filesize < MB) {
+						returnedSize = new DecimalFormat("0.00").format(filesize / KB).concat("MB");
+					}
+					else {
+					   if (filesize < GB) {
+						    returnedSize = new DecimalFormat("0.00").format(filesize / MB).concat("GB");
+					   }
+					   else {
+						 if (filesize < TB) {
+							 returnedSize = new DecimalFormat("0.00").format(filesize / GB).concat("TB");
+						 }
+						 else {
+							returnedSize = new DecimalFormat("0.00").format(filesize / TB).concat("PB");
+						 }
+					   }
+					}
+			     }
+	          }
+	          return returnedSize;
+          }
+          else {
+	        return "";
 
+		  }
+		}
+        // bytes
+        public static long getFileLength(String path){
+			File file = new File(path);
+			if (!file.exists()) return 0;
+            return file.length();
+		}
+		// times
+        // time unit method , if you want this method , first import , java.util.concurrent.TimeUnit
+        /*public static long MinutesToMilliSeconds(long timeInput){
+		*   return TimeUnit.MINUTES.toMillis(timeInput);
+		*}
+		*public static long SecondsToMinutes(long timeInput){
+		*   return TimeUnit.SECONDS.toMinutes(timeInput);
+		*}
+		*public static long SecondsToMiliseconds(long timeInput){
+		*   return TimeUnit.SECONDS.toMillis(timeInput);
+		}*/
+		
+		
+		public static double MilliSecondsToSeconds(double input){
+		    return input / 1000;
+		}
+		public static double MilliSecondsToMinutes(double input){
+		    return input / (1000 / 60);
+		}
+		public static double MilliSecondsToHours(double input){
+		    return input / (1000 / (60 / 60));
+		}
+		public static double SecondsToMilliSeconds(double input){
+			return input * 1000;
+	    }
+		public static double SecondsToMinutes(double input){
+			return input / 60;
+		}
+		public static double SecondsToHours(double input){
+			return input / (60 / 60);
+		}
+		public static double MinutesToMilliSeconds(double input){
+			return input * (60 * 1000); 
+		}
+		public static double MinutesToSeconds(double input){
+			return input * 60;
+		}
+		public static double MinutesToHours(double input){
+		    return input / 60;
+		}
+		public static double HoursToMilliSeconds(double input){
+			return input * (60 * (60 * 1000));
+		}
+		public static double HoursToSeconds(double input){
+			return input * (60 * 60);
+		}
+		public static double HoursToMinutes(double input){
+			return input * 60;
+		}
 }
