@@ -13,7 +13,7 @@ public class MathClass {
 	   public static final double PI = 3.14159265358979323846;
 	
 	    // Circle and cylinder
-	    public static double perimeterCircle(double n){
+	        public static double perimeterCircle(double n){
 			return n * (2.0 * PI);
 		}
 		public static double AreaCircle(double r){
@@ -32,8 +32,8 @@ public class MathClass {
 		}
 		// get random numbers
 		public static int getRandom(int min, int max) {
-	      Random random = new Random();
-	      return random.nextInt(max - min + 1) + min;
+	           Random random = new Random();
+	           return random.nextInt(max - min + 1) + min;
 		}
 		// find prime numbers
 		public static boolean isPrime(double n){
@@ -58,7 +58,7 @@ public class MathClass {
 			 return is_prime;
 			}
 		  }
-	    }
+	        }
 		// square
 		public static double SquareEnvironment(double length){
 		   return length * 4.0;
@@ -66,37 +66,37 @@ public class MathClass {
 		public static double SquareArea(double length){
 		   return length * length;    
 		}
-        public static double SquareVolume(double length , double height){
+                public static double SquareVolume(double length , double height){
 		  return SquareArea(length) * height;
 		}
 		public static double LAS(double length , double height){
 		  return SquareEnvironment(length) * height;
 		}
 		// device
-        public static float convertDpToPixel(float dp, Context context){
-          Resources resources = context.getResources();
-          DisplayMetrics metrics = resources.getDisplayMetrics();
-          float px = dp * (metrics.densityDpi / 160f);
-          return px;
-        }
+                public static float convertDpToPixel(float dp, Context context){
+                   Resources resources = context.getResources();
+                   DisplayMetrics metrics = resources.getDisplayMetrics();
+                   float px = dp * (metrics.densityDpi / 160f);
+                    return px;
+                }
 		public static float convertPixelsToDp(float px ,Context context){
 		  Resources resources = context.getResources();
 		  DisplayMetrics metrics = resources.getDisplayMetrics();
 		  float dp = px / (metrics.densityDpi / 160f);
 		  return dp;
 		}
-        public static float getScreenXDpi() {
-          return Resources.getSystem().getDisplayMetrics().xdpi;
-        }
+                public static float getScreenXDpi() {
+                   return Resources.getSystem().getDisplayMetrics().xdpi;
+                }
 		public static float getScreenYDpi() {
-          return Resources.getSystem().getDisplayMetrics().ydpi;
-        }
+                   return Resources.getSystem().getDisplayMetrics().ydpi;
+                }
 		public static int getDisplayWidthPixels(Context context) {
-	      return context.getResources().getDisplayMetrics().widthPixels;
+	           return context.getResources().getDisplayMetrics().widthPixels;
 		}
 
 		public static int getDisplayHeightPixels(Context context) {
-	      return context.getResources().getDisplayMetrics().heightPixels;
+	           return context.getResources().getDisplayMetrics().heightPixels;
 		}
 		// Sphere
 		public static double VolumeSphere(double radius){
@@ -109,7 +109,7 @@ public class MathClass {
 		}
 		// file
         // convert bytes to kB , Mb , GB , TB, PB 
-        public static String getFileSize(String path){
+                public static String getFileSize(String path){
 		  File file = new File(path);
           if (file.exists() && !file.isDirectory()) {
 	          double filesize = getFileLength(path);
