@@ -1,5 +1,5 @@
 
-package com.my.newproject51;
+package com.math;
 
 import java.util.Random;
 import android.content.Context;
