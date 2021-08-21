@@ -182,7 +182,7 @@ public class MathClass {
 		}
 		public static double SecondsToMilliSeconds(double input){
 			return input * 1000;
-	    }
+	        }
 		public static double SecondsToMinutes(double input){
 			return input / 60;
 		}
