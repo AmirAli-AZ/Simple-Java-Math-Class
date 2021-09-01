@@ -34,19 +34,20 @@ public class MathClass {
 	}
 	// find prime numbers
 	public static boolean isPrime(double n){
+		double num = abs(n);
 		boolean is_prime = true;
-		if (n == 1){
+		if (num == 1){
 			is_prime = false;
 			return false;
 		}
 		else{
-			if (n == 2){
+			if (num == 2){
 				 is_prime = true;
 			     return true;
 			}
 			else{
-				for (int j = 2; j <= Math.sqrt(n); j++) {
-					if (n % j == 0){
+				for (int j = 2; j <= Math.sqrt(num); j++) {
+					if (num % j == 0){
 						is_prime = false;
 						break;
 					}
@@ -199,5 +200,17 @@ public class MathClass {
 	}
 	public static double HoursToMinutes(double input){
 		return input * 60;
+	}
+	public static double abs(double n){
+		if(n > 0){
+			return n * 1;
+		}else{
+		   if(n < 0){
+		     return n * -1;
+		   }else{
+		      return 0;
+		   }
+        
+		}
 	}
 }
