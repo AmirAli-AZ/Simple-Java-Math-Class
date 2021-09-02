@@ -4,8 +4,10 @@ import java.util.Random;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.content.res.Resources;
+import android.util.TypedValue;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.lang.Math;
 
 public class MathClass {
 	
@@ -98,6 +100,9 @@ public class MathClass {
 	public static double VolumeSphere(double radius){
 		double volume = (4.0/3.0)*PI*(radius*radius*radius);
 		return volume;
+	}
+	public static float getDip(Context context, int n){
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, context.getResources().getDisplayMetrics());
 	}
 	public static double AreaSphere(double radius){
 		double area_sphere = 4.0*PI*(radius*radius);
@@ -212,5 +217,50 @@ public class MathClass {
 		   }
         
 		}
+	}
+	public static float percent(int score , int total){
+		float percentage = (score * 100/ total);
+		return percentage;
+	}
+	public static double min(double a , double b){
+		if(a != a)
+			return a;
+		if (a == 0 && b == 0)
+			return -(-a - b);
+			return (a < b) ? a : b;
+	}
+	public static double max(double a , double b){
+		if (a != a)
+		   return a;
+		if (a == 0 && b == 0)
+		   return a - -b;
+		   return (a > b) ? a : b;
+		
+	}
+	public static double toRadians(double degrees){
+		return (degrees * PI) / 180;
+	}
+	public static double toDegrees(double rads){
+		return (rads * 180) / PI;
+	}
+	public static double sin(double x){
+        double sin=x,term, numerator=x, denominator=1, xsquare=x*x, factorial=1, sign=-1;
+        do{
+            numerator *= xsquare;
+            denominator=denominator*(factorial+1)*(factorial+2);
+            factorial=factorial+2;
+            term=numerator/denominator;
+            sin=sin+(sign*term);
+            sign*=-1;
+        }while(term>0.00001);
+        return sin;
+    }
+	public static int factorial(int n){
+		if(n == 1){
+		   return 1;
+		}else{
+		   return n * factorial(n - 1);
+		}
+		
 	}
 }
