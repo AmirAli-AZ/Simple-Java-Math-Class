@@ -9,10 +9,12 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.lang.Math;
 
+// created by amir ali in Mon,16Aug 2021
+
 public class MathClass {
 	
 	public static final double PI = 3.14159265358979323846;
-        public static final double E = 2.7182818284590452354;
+	public static final double E = 2.7182818284590452354;
 	// Circle and cylinder
 	public static double perimeterCircle(double n){
 		return n * (2.0 * PI);
@@ -100,14 +102,23 @@ public class MathClass {
 	public static float getDip(Context context, int n){
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, context.getResources().getDisplayMetrics());
 	}
-	public int getStatusBarHeight(Context context) { 
-        int result = 0;
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+	public static int getStatusBarHeight(Context context) { 
+	    Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
-            result = context.getResources().getDimensionPixelSize(resourceId);
+            return resources.getDimensionPixelSize(resourceId);
         } 
-        return result;
+        return 0;
 	}
+	public static int getNavBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            return resources.getDimensionPixelSize(resourceId);
+        } else {
+            return 0;
+        }
+    }
 	// Sphere
 	public static double VolumeSphere(double radius){
 		double volume = (4.0/3.0)*PI*(radius*radius*radius);
