@@ -96,13 +96,21 @@ public class MathClass {
 	public static int getDisplayHeightPixels(Context context) {
 		return context.getResources().getDisplayMetrics().heightPixels;
 	}
+	public static float getDip(Context context, int n){
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, context.getResources().getDisplayMetrics());
+	}
+	public int getStatusBarHeight(Context context) { 
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        } 
+        return result;
+	}
 	// Sphere
 	public static double VolumeSphere(double radius){
 		double volume = (4.0/3.0)*PI*(radius*radius*radius);
 		return volume;
-	}
-	public static float getDip(Context context, int n){
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, context.getResources().getDisplayMetrics());
 	}
 	public static double AreaSphere(double radius){
 		double area_sphere = 4.0*PI*(radius*radius);
