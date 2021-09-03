@@ -104,20 +104,21 @@ public class MathClass {
 	}
 	public static int getStatusBarHeight(Context context) { 
 	    Resources resources = context.getResources();
+		int result = 0;
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
-            return resources.getDimensionPixelSize(resourceId);
+            result = resources.getDimensionPixelSize(resourceId);
         } 
-        return 0;
+        return result;
 	}
 	public static int getNavBarHeight(Context context) {
         Resources resources = context.getResources();
+		int result = 0;
         int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
         if (resourceId > 0) {
-            return resources.getDimensionPixelSize(resourceId);
-        } else {
-            return 0;
-        }
+            result = resources.getDimensionPixelSize(resourceId);
+        } 
+        return result;
     }
 	// Sphere
 	public static double VolumeSphere(double radius){
