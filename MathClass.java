@@ -12,6 +12,7 @@ import java.lang.Math;
 public class MathClass {
 	
 	public static final double PI = 3.14159265358979323846;
+        public static final double E = 2.7182818284590452354;
 	// Circle and cylinder
 	public static double perimeterCircle(double n){
 		return n * (2.0 * PI);
