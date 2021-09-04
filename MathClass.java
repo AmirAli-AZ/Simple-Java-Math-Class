@@ -8,8 +8,10 @@ import android.util.TypedValue;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.lang.Math;
+import java.util.ArrayList;
 
 // created by amir ali in Mon,16Aug 2021
+// warning We need to create this class for all types of variables
 
 public class MathClass {
 	
@@ -58,6 +60,14 @@ public class MathClass {
 					}
 				}
 				return is_prime;
+			}
+		}
+	}
+	public static void PrimesList(double n , ArrayList<Double> list){
+		double num = abs(n);
+		for(int j = 2; j <= num; j++){
+			if(isPrime(j)){
+			   list.add(Double.valueOf(j));
 			}
 		}
 	}
@@ -227,18 +237,18 @@ public class MathClass {
 	public static double HoursToMinutes(double input){
 		return input * 60;
 	}
-	public static double abs(double n){
-		if(n > 0){
-			return n * 1;
-		}else{
-		   if(n < 0){
-		     return n * -1;
-		   }else{
-		      return 0;
-		   }
-        
-		}
+	public static double abs(double d){
+	    return (d <= 0) ? 0 - d : d;
 	}
+    public static int abs(int i){
+        return (i < 0) ? -i : i;
+    }
+	public static long abs(long l)  {
+		return (l < 0) ? -l : l;
+	}
+	public static float abs(float f){
+        return (f <= 0) ? 0 - f : f;
+    }
 	public static float percent(int score , int total){
 		float percentage = (score * 100/ total);
 		return percentage;
@@ -283,5 +293,12 @@ public class MathClass {
 		   return n * factorial(n - 1);
 		}
 		
+	}
+	public static boolean isDecimal(double num){
+		boolean result = false;
+		if(num % 1 != 0){
+			result = true;
+		}
+		return result;
 	}
 }
