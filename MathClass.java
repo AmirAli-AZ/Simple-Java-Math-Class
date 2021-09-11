@@ -42,17 +42,15 @@ public class MathClass {
 	// find prime numbers
 	public static boolean isPrime(double n){
 		double num = abs(n);
-		boolean is_prime = true;
 		if (num == 1){
-			is_prime = false;
 			return false;
 		}
 		else{
 			if (num == 2){
-				 is_prime = true;
 			     return true;
 			}
 			else{
+				boolean is_prime = true;
 				for (int j = 2; j <= Math.sqrt(num); j++) {
 					if (num % j == 0){
 						is_prime = false;
@@ -266,7 +264,6 @@ public class MathClass {
 		if (a == 0 && b == 0)
 		   return a - -b;
 		   return (a > b) ? a : b;
-		
 	}
 	public static double toRadians(double degrees){
 		return (degrees * PI) / 180;
@@ -301,4 +298,27 @@ public class MathClass {
 		}
 		return result;
 	}
+	
+	//Least Common Multiple
+	public static long lcm(long x, long y){
+		long a = abs(x);
+		long b = abs(y);
+		
+        return a * (b / gcd(a, b));
+	}
+
+    //Greatest Common Divisor
+    public static long gcd(long x, long y){
+		long a = abs(x);
+		long b = abs(y);
+		
+        while (b > 0)
+		{
+			long temp = b;
+			b = a % b; 
+			a = temp;
+		}
+		return a;
+
+    }
 }
