@@ -9,12 +9,13 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.lang.Math;
 import java.util.ArrayList;
+import android.graphics.Color;
 
 // created by amir ali in Mon,16Aug 2021
 // warning We need to create this class for all types of variables
 
 public class MathClass {
-	
+
 	public static final double PI = 3.14159265358979323846;
 	public static final double E = 2.7182818284590452354;
 	// Circle and cylinder
@@ -32,12 +33,17 @@ public class MathClass {
 		return AreaCircle(radius) * height;
 	}
 	public static double LAC(double radius , double height){
-		 return perimeterCircle(radius) * height;
+		return perimeterCircle(radius) * height;
 	}
-	// get random numbers
+	// random
 	public static int getRandom(int min, int max) {
 		Random random = new Random();
 	    return random.nextInt(max - min + 1) + min;
+	}
+	public static int getRandomColors(){
+		Random random = new Random();
+		int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+		return color;
 	}
 	// find prime numbers
 	public static boolean isPrime(double n){
@@ -47,7 +53,7 @@ public class MathClass {
 		}
 		else{
 			if (num == 2){
-			     return true;
+				return true;
 			}
 			else{
 				boolean is_prime = true;
@@ -65,7 +71,7 @@ public class MathClass {
 		double num = abs(n);
 		for(int j = 2; j <= num; j++){
 			if(isPrime(j)){
-			   list.add(Double.valueOf(j));
+				list.add(Double.valueOf(j));
 			}
 		}
 	}
@@ -180,7 +186,7 @@ public class MathClass {
 		else{
 			return "";
 		}
-			
+
 	}
 	// bytes
 	public static long getFileLength(String path){
@@ -189,16 +195,16 @@ public class MathClass {
 		return file.length();
 	}
 	// times
-        // time unit method , if you want this method , first import , java.util.concurrent.TimeUnit
-        /*public static long MinutesToMilliSeconds(long timeInput){
-		*   return TimeUnit.MINUTES.toMillis(timeInput);
-		*}
-		*public static long SecondsToMinutes(long timeInput){
-		*   return TimeUnit.SECONDS.toMinutes(timeInput);
-		*}
-		*public static long SecondsToMiliseconds(long timeInput){
-		*   return TimeUnit.SECONDS.toMillis(timeInput);
-	    }*/
+	// time unit method , if you want this method , first import , java.util.concurrent.TimeUnit
+	/*public static long MinutesToMilliSeconds(long timeInput){
+	 *   return TimeUnit.MINUTES.toMillis(timeInput);
+	 *}
+	 *public static long SecondsToMinutes(long timeInput){
+	 *   return TimeUnit.SECONDS.toMinutes(timeInput);
+	 *}
+	 *public static long SecondsToMiliseconds(long timeInput){
+	 *   return TimeUnit.SECONDS.toMillis(timeInput);
+	 }*/
 	public static double MilliSecondsToSeconds(double input){
 		return input / 1000;
 	}
@@ -256,14 +262,14 @@ public class MathClass {
 			return a;
 		if (a == 0 && b == 0)
 			return -(-a - b);
-			return (a < b) ? a : b;
+		return (a < b) ? a : b;
 	}
 	public static double max(double a , double b){
 		if (a != a)
-		   return a;
+			return a;
 		if (a == 0 && b == 0)
-		   return a - -b;
-		   return (a > b) ? a : b;
+			return a - -b;
+		return (a > b) ? a : b;
 	}
 	public static double toRadians(double degrees){
 		return (degrees * PI) / 180;
@@ -283,13 +289,36 @@ public class MathClass {
         }while(term>0.00001);
         return sin;
     }
-	public static int factorial(int n){
-		if(n == 1){
-		   return 1;
-		}else{
-		   return n * factorial(n - 1);
+	public static void primeFactors(long numbers , ArrayList<Long> list) {
+		long n = abs(numbers);
+		for (long i = 2; i <= n / i; i++) {
+			while (n % i == 0) {
+				list.add(i);
+				n /= i;
+			}
 		}
-		
+		if (n > 1) {
+			list.add(n);
+		}
+	}
+	public static long factorial(long n){
+		long num = abs(n);
+
+		if(num == 1){
+			return 1;
+		}else{
+			return num * factorial(num - 1);
+		}
+
+	}
+	public static void listFactors(long numbers , ArrayList<Long> list){
+		long n = abs(numbers);
+		for(long a = 1; a <= n; a++){
+			if(n % a == 0){
+				list.add(a);
+			}
+		}
+
 	}
 	public static boolean isDecimal(double num){
 		boolean result = false;
@@ -298,12 +327,12 @@ public class MathClass {
 		}
 		return result;
 	}
-	
+
 	//Least Common Multiple
 	public static long lcm(long x, long y){
 		long a = abs(x);
 		long b = abs(y);
-		
+
         return a * (b / gcd(a, b));
 	}
 
@@ -311,7 +340,7 @@ public class MathClass {
     public static long gcd(long x, long y){
 		long a = abs(x);
 		long b = abs(y);
-		
+
         while (b > 0)
 		{
 			long temp = b;
