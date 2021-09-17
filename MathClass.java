@@ -399,5 +399,8 @@ public class MathClass {
 			return a >= 0 ? 0 * a : -1; 
 	    return a < 0 ? (long) a - 1.0 : (long) a;
 	}
+        public static double ceil(double a){
+		return -floor(-a);
+	}
 	
 } 
