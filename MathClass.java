@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import android.graphics.Color;
 
 // created by amir ali in Mon,16Aug 2021
-// warning We need to create this class for all types of variables
 
 public class MathClass {
 
 	public static final double PI = 3.14159265358979323846;
 	public static final double E = 2.7182818284590452354;
+
+	private static final double  longBit = 0x10000000000000L;
 	// Circle and cylinder
 	public static double perimeterCircle(double n){
 		return n * (2.0 * PI);
@@ -46,8 +47,8 @@ public class MathClass {
 		return color;
 	}
 	// find prime numbers
-	public static boolean isPrime(double n){
-		double num = abs(n);
+	public static boolean isPrime(Long n){
+		long num = abs(n);
 		if (num == 1){
 			return false;
 		}
@@ -57,7 +58,7 @@ public class MathClass {
 			}
 			else{
 				boolean is_prime = true;
-				for (int j = 2; j <= Math.sqrt(num); j++) {
+				for (long j = 2; j <= Math.sqrt(num); j++) {
 					if (num % j == 0){
 						is_prime = false;
 						break;
@@ -67,13 +68,15 @@ public class MathClass {
 			}
 		}
 	}
-	public static void PrimesList(double n , ArrayList<Double> list){
-		double num = abs(n);
-		for(int j = 2; j <= num; j++){
+	public static ArrayList<Long> primesList(long n){
+		ArrayList<Long> list = new ArrayList<>();
+		long num = abs(n);
+		for(long j = 2; j <= num; j++){
 			if(isPrime(j)){
-				list.add(Double.valueOf(j));
+				list.add((j));
 			}
 		}
+		return list;
 	}
 	// square
 	public static double SquareEnvironment(double length){
@@ -257,12 +260,40 @@ public class MathClass {
 		float percentage = (score * 100/ total);
 		return percentage;
 	}
+	public static int min(int a, int b){
+		return (a < b) ? a : b; 
+	}
+	public static long min(long a, long b){
+		return (a < b) ? a : b;
+	}
+	public static float min(float a, float b){
+		if (a != a)
+			return a;
+			 
+		if (a == 0 && b == 0)
+			return -(-a - b);
+		return (a < b) ? a : b;
+	}
 	public static double min(double a , double b){
 		if(a != a)
 			return a;
 		if (a == 0 && b == 0)
 			return -(-a - b);
 		return (a < b) ? a : b;
+	}
+	public static int max(int a, int b){
+		return (a > b) ? a : b;
+	} 
+	public static long max(long a, long b){
+		return (a > b) ? a : b;
+	}
+	public static float max(float a, float b){
+		if (a != a)
+			return a;
+
+		if (a == 0 && b == 0)
+			return a - -b;
+		return (a > b) ? a : b;
 	}
 	public static double max(double a , double b){
 		if (a != a)
@@ -289,7 +320,8 @@ public class MathClass {
         }while(term>0.00001);
         return sin;
     }
-	public static void primeFactors(long numbers , ArrayList<Long> list) {
+	public static ArrayList<Long> primeFactors(long numbers) {
+		ArrayList<Long> list = new ArrayList<>();
 		long n = abs(numbers);
 		for (long i = 2; i <= n / i; i++) {
 			while (n % i == 0) {
@@ -300,6 +332,7 @@ public class MathClass {
 		if (n > 1) {
 			list.add(n);
 		}
+	    return list;
 	}
 	public static long factorial(long n){
 		long num = abs(n);
@@ -311,13 +344,15 @@ public class MathClass {
 		}
 
 	}
-	public static void listFactors(long numbers , ArrayList<Long> list){
+	public static ArrayList<Long> listFactors(long numbers){
+		ArrayList<Long> list = new ArrayList<>();
 		long n = abs(numbers);
 		for(long a = 1; a <= n; a++){
 			if(n % a == 0){
 				list.add(a);
 			}
 		}
+		return list;
 
 	}
 	public static boolean isDecimal(double num){
@@ -350,4 +385,19 @@ public class MathClass {
 		return a;
 
     }
-}
+	public static int round(float f){
+		return (int) floor(f + 0.5f);
+	}
+	public static long round(double d){
+		return (long) floor(d + 0.5);
+	}
+	public static double floor(double a){
+		double x = abs(a);
+		if (! (x < longBit) || (long) a == a)
+			return a;
+		if (x < 1) 
+			return a >= 0 ? 0 * a : -1; 
+	    return a < 0 ? (long) a - 1.0 : (long) a;
+	}
+	
+} 
