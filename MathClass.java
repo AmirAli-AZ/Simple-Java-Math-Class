@@ -402,5 +402,7 @@ public class MathClass {
         public static double ceil(double a){
 		return -floor(-a);
 	}
-	
+	public static long GaussSeidel(long n){
+		return (n * (n + 1)) / 2;
+	}
 } 
