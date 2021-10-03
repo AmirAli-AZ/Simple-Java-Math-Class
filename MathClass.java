@@ -486,4 +486,10 @@ public class MathClass {
     public static float ulp(float f) {
         return Math.ulp(f);
     }
+	public static double log(double x){
+		return 1000.0 * (Math.pow(x , (1 / 1000.0)) - 1);
+	}
+	public static double log10(double x){
+		return log(x) / log(10);
+	}
 }
