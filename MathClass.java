@@ -234,6 +234,7 @@ public class MathClass {
 		return file.length();
 	}
 	// times
+	
 	// time unit method , if you want this method , first import , java.util.concurrent.TimeUnit
 	/*public static long MinutesToMilliSeconds(long timeInput){
 	 *   return TimeUnit.MINUTES.toMillis(timeInput);
@@ -244,14 +245,15 @@ public class MathClass {
 	 *public static long SecondsToMiliseconds(long timeInput){
 	 *   return TimeUnit.SECONDS.toMillis(timeInput);
 	 }*/
+	 
 	public static double MilliSecondsToSeconds(double input){
 		return input / 1000;
 	}
 	public static double MilliSecondsToMinutes(double input){
-		return input / (1000 / 60);
+		return MilliSecondsToSeconds(input) / 60;
 	}
 	public static double MilliSecondsToHours(double input){
-		return input / (1000 / (60 / 60));
+		return MilliSecondsToMinutes(input) / 60;
 	}
 	public static double SecondsToMilliSeconds(double input){
 		return input * 1000;
@@ -260,10 +262,10 @@ public class MathClass {
 		return input / 60;
 	}
 	public static double SecondsToHours(double input){
-		return input / (60 / 60);
+		return SecondsToMinutes(input) / 60;
 	}
 	public static double MinutesToMilliSeconds(double input){
-		return input * (60 * 1000); 
+		return input * 60 * 1000;
 	}
 	public static double MinutesToSeconds(double input){
 		return input * 60;
@@ -272,10 +274,10 @@ public class MathClass {
 		return input / 60;
 	}
 	public static double HoursToMilliSeconds(double input){
-		return input * (60 * (60 * 1000));
+		return MinutesToMilliSeconds(input) * 60;
 	}
 	public static double HoursToSeconds(double input){
-		return input * (60 * 60);
+		return input * 60 * 60;
 	}
 	public static double HoursToMinutes(double input){
 		return input * 60;
