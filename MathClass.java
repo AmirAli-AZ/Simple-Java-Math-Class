@@ -104,6 +104,21 @@ public class MathClass {
 			}
 		}
 	}
+	
+	public static long nextPrime(long n) {
+		long num = abs(n);
+		num++;
+		for (int i = 2; i < num; i++) {
+			if(num%i == 0) {
+				num++;
+				i=2;
+			} else {
+				continue;
+			}
+		}
+		return num;
+	}
+	
 	public static ArrayList<Long> primesList(long n){
 		ArrayList<Long> list = new ArrayList<>();
 		long num = abs(n);
