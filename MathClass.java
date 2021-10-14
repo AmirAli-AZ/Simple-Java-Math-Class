@@ -22,6 +22,18 @@ public class MathClass {
 	public static final double PI = 3.14159265358979323846;
 	public static final double E = 2.7182818284590452354;
 
+	public static final int 
+	ZERO = 0,
+	ONE = 1, 
+	TWO = 2, 
+	THREE = 3, 
+	FOUR = 4, 
+	FIVE = 5, 
+	SIX = 6, 
+	SEVEN = 7, 
+	EIGHT = 8, 
+	NINE =9,
+	TEN = 10;
 
 	private static final double TWO_31 = 0x80000000L, // Long bits 0x41e0000000000000L.
 	TWO_52 = 0x10000000000000L, // Long bits 0x4330000000000000L.
