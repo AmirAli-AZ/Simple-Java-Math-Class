@@ -13,11 +13,14 @@ import android.graphics.Color;
 import java.util.NavigableMap;
 import java.util.Map;
 import java.util.TreeMap;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 // created by amir ali in Mon,16Aug 2021
 // Some of these methods are for Class StrictMath.
 
-public class MathClass {
+public class MathClass
+{
 
 	public static final double PI = 3.14159265358979323846;
 	public static final double E = 2.7182818284590452354;
@@ -64,50 +67,65 @@ public class MathClass {
 	INV_LN2 = 1.4426950408889634, // Long bits 0x3ff71547652b82feL.
 	INV_LN2_H = 1.4426950216293335, // Long bits 0x3ff7154760000000L.
 	INV_LN2_L = 1.9259629911266175e-8; // Long bits 0x3e54ae0bf85ddf44L.
-	
-	
+
+
 	// Circle and cylinder
-	public static double perimeterCircle(double n){
+	public static double perimeterCircle(double n)
+	{
 		return n * (2.0 * PI);
 	}
-	public static double AreaCircle(double r){
-		return r* (r * PI);
+	public static double AreaCircle(double r)
+	{
+		return r * (r * PI);
 	}
-	public static String getInfo(){
+	public static String getInfo()
+	{
 		String information = "created by amir ali in Mon,16Aug 2021";
 		return information;
 	}
-	public static double CylindricalVolume(double radius , double height){
+	public static double CylindricalVolume(double radius , double height)
+	{
 		return AreaCircle(radius) * height;
 	}
-	public static double LAC(double radius , double height){
+	public static double LAC(double radius , double height)
+	{
 		return perimeterCircle(radius) * height;
 	}
 	// random
-	public static int getRandom(int min, int max) {
+	public static int getRandom(int min, int max)
+	{
 	    return RandomGenerator.random.nextInt(max - min + 1) + min;
 	}
-	public static int getRandomColors(){
+	public static int getRandomColors()
+	{
 		int color = Color.argb(255, RandomGenerator.random.nextInt(256), RandomGenerator.random.nextInt(256), RandomGenerator.random.nextInt(256));
 		return color;
 	}
-	public static double random(){
+	public static double random()
+	{
 		return RandomGenerator.random.nextDouble();
 	}
 	// find prime numbers
-	public static boolean isPrime(Long n){
+	public static boolean isPrime(Long n)
+	{
 		long num = abs(n);
-		if (num == 1){
+		if (num == 1)
+		{
 			return false;
 		}
-		else{
-			if (num == 2){
+		else
+		{
+			if (num == 2)
+			{
 				return true;
 			}
-			else{
+			else
+			{
 				boolean is_prime = true;
-				for (long j = 2; j <= sqrt(num); j++) {
-					if (num % j == 0){
+				for (long j = 2; j <= sqrt(num); j++)
+				{
+					if (num % j == 0)
+					{
 						is_prime = false;
 						break;
 					}
@@ -116,104 +134,131 @@ public class MathClass {
 			}
 		}
 	}
-	
-	public static long nextPrime(long n) {
+
+	public static long nextPrime(long n)
+	{
 		long num = abs(n);
 		num++;
-		for (int i = 2; i < num; i++) {
-			if(num%i == 0) {
+		for (int i = 2; i < num; i++)
+		{
+			if (num % i == 0)
+			{
 				num++;
-				i=2;
-			} else {
+				i = 2;
+			}
+			else
+			{
 				continue;
 			}
 		}
 		return num;
 	}
-	
-	public static ArrayList<Long> primesList(long n){
+
+	public static ArrayList<Long> primesList(long n)
+	{
 		ArrayList<Long> list = new ArrayList<>();
 		long num = abs(n);
-		for(long j = 2; j <= num; j++){
-			if(isPrime(j)){
+		for (long j = 2; j <= num; j++)
+		{
+			if (isPrime(j))
+			{
 				list.add((j));
 			}
 		}
 		return list;
 	}
 	// square
-	public static double SquareEnvironment(double length){
+	public static double SquareEnvironment(double length)
+	{
 		return length * 4.0;
 	}
-	public static double SquareArea(double length){
+	public static double SquareArea(double length)
+	{
 		return length * length;
 	}
-	public static double SquareVolume(double length , double height){
+	public static double SquareVolume(double length , double height)
+	{
 		return SquareArea(length) * height;
 	}
-	public static double LAS(double length , double height){
+	public static double LAS(double length , double height)
+	{
 		return SquareEnvironment(length) * height;
 	}
 	// device
-	public static float convertDpToPixel(float dp, Context context){
+	public static float convertDpToPixel(float dp, Context context)
+	{
 		Resources resources = context.getResources();
 		DisplayMetrics metrics = resources.getDisplayMetrics();
 		float px = dp * (metrics.densityDpi / 160f);
 		return px;
 	}
-	public static float convertPixelsToDp(float px ,Context context){
+	public static float convertPixelsToDp(float px , Context context)
+	{
 		Resources resources = context.getResources();
 		DisplayMetrics metrics = resources.getDisplayMetrics();
 		float dp = px / (metrics.densityDpi / 160f);
 		return dp;
 	}
-	public static float getScreenXDpi() {
+	public static float getScreenXDpi()
+	{
 		return Resources.getSystem().getDisplayMetrics().xdpi;
 	}
-	public static float getScreenYDpi() {
+	public static float getScreenYDpi()
+	{
 		return Resources.getSystem().getDisplayMetrics().ydpi;
 	}
-	public static int getDisplayWidthPixels(Context context) {
+	public static int getDisplayWidthPixels(Context context)
+	{
 		return context.getResources().getDisplayMetrics().widthPixels;
 	}
-	public static int getDisplayHeightPixels(Context context) {
+	public static int getDisplayHeightPixels(Context context)
+	{
 		return context.getResources().getDisplayMetrics().heightPixels;
 	}
-	public static float getDip(Context context, int n){
+	public static float getDip(Context context, int n)
+	{
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, context.getResources().getDisplayMetrics());
 	}
-	public static int getStatusBarHeight(Context context) { 
+	public static int getStatusBarHeight(Context context)
+	{ 
 	    Resources resources = context.getResources();
 		int result = 0;
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
+        if (resourceId > 0)
+		{
             result = resources.getDimensionPixelSize(resourceId);
         } 
         return result;
 	}
-	public static int getNavBarHeight(Context context) {
+	public static int getNavBarHeight(Context context)
+	{
         Resources resources = context.getResources();
 		int result = 0;
         int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-        if (resourceId > 0) {
+        if (resourceId > 0)
+		{
             result = resources.getDimensionPixelSize(resourceId);
         } 
         return result;
     }
 	// Sphere
-	public static double VolumeSphere(double radius){
-		double volume = (4.0/3.0)*PI*(radius*radius*radius);
+	public static double VolumeSphere(double radius)
+	{
+		double volume = (4.0 / 3.0) * PI * (radius * radius * radius);
 		return volume;
 	}
-	public static double AreaSphere(double radius){
-		double area_sphere = 4.0*PI*(radius*radius);
+	public static double AreaSphere(double radius)
+	{
+		double area_sphere = 4.0 * PI * (radius * radius);
 		return area_sphere;
 	}
 	// file 
 	// convert bytes to kB , Mb , GB , TB, PB 
-	public static String getFileSize(String path){
+	public static String getFileSize(String path)
+	{
 		File file = new File(path);
-		if (file.exists() && !file.isDirectory()){
+		if (file.exists() && !file.isDirectory())
+		{
 			double filesize = getFileLength(path);
 			double B = 1024;
 			double KB = B * B;
@@ -221,26 +266,36 @@ public class MathClass {
 			double GB = B * (B * (B * B));
 			double TB = B * (B * (B * (B * B)));
 			String returnedSize = "";
-			if (filesize < B) {
+			if (filesize < B)
+			{
 				returnedSize = String.valueOf((long)(filesize)).concat("B");
 			}
-			else{
-				if (filesize < KB) {
+			else
+			{
+				if (filesize < KB)
+				{
 					returnedSize = new DecimalFormat("0.00").format(filesize / B).concat("KB");
 				}
-				else {
-					if (filesize < MB) {
+				else
+				{
+					if (filesize < MB)
+					{
 						returnedSize = new DecimalFormat("0.00").format(filesize / KB).concat("MB");
 					}
-					else{
-						if (filesize < GB) {
+					else
+					{
+						if (filesize < GB)
+						{
 							returnedSize = new DecimalFormat("0.00").format(filesize / MB).concat("GB");
 					    }
-						else{
-							if (filesize < TB) {
+						else
+						{
+							if (filesize < TB)
+							{
 								returnedSize = new DecimalFormat("0.00").format(filesize / GB).concat("TB");
 							}
-							else{
+							else
+							{
 								returnedSize = new DecimalFormat("0.00").format(filesize / TB).concat("PB");
 							}
 						}
@@ -249,19 +304,21 @@ public class MathClass {
 			}
 			return returnedSize;
 		}
-		else{
+		else
+		{
 			return "";
 		}
 
 	}
 	// bytes
-	private static long getFileLength(String path){
+	private static long getFileLength(String path)
+	{
 		File file = new File(path);
 		if (!file.exists()) return 0;
 		return file.length();
 	}
 	// times
-	
+
 	// time unit method , if you want this method , first import , java.util.concurrent.TimeUnit
 	/*public static long MinutesToMilliSeconds(long timeInput){
 	 *   return TimeUnit.MINUTES.toMillis(timeInput);
@@ -272,66 +329,86 @@ public class MathClass {
 	 *public static long SecondsToMiliseconds(long timeInput){
 	 *   return TimeUnit.SECONDS.toMillis(timeInput);
 	 }*/
-	 
-	public static double MilliSecondsToSeconds(double input){
+
+	public static double MilliSecondsToSeconds(double input)
+	{
 		return input / 1000;
 	}
-	public static double MilliSecondsToMinutes(double input){
+	public static double MilliSecondsToMinutes(double input)
+	{
 		return MilliSecondsToSeconds(input) / 60;
 	}
-	public static double MilliSecondsToHours(double input){
+	public static double MilliSecondsToHours(double input)
+	{
 		return MilliSecondsToMinutes(input) / 60;
 	}
-	public static double SecondsToMilliSeconds(double input){
+	public static double SecondsToMilliSeconds(double input)
+	{
 		return input * 1000;
 	}
-	public static double SecondsToMinutes(double input){
+	public static double SecondsToMinutes(double input)
+	{
 		return input / 60;
 	}
-	public static double SecondsToHours(double input){
+	public static double SecondsToHours(double input)
+	{
 		return SecondsToMinutes(input) / 60;
 	}
-	public static double MinutesToMilliSeconds(double input){
+	public static double MinutesToMilliSeconds(double input)
+	{
 		return input * 60 * 1000;
 	}
-	public static double MinutesToSeconds(double input){
+	public static double MinutesToSeconds(double input)
+	{
 		return input * 60;
 	}
-	public static double MinutesToHours(double input){
+	public static double MinutesToHours(double input)
+	{
 		return input / 60;
 	}
-	public static double HoursToMilliSeconds(double input){
+	public static double HoursToMilliSeconds(double input)
+	{
 		return MinutesToMilliSeconds(input) * 60;
 	}
-	public static double HoursToSeconds(double input){
+	public static double HoursToSeconds(double input)
+	{
 		return input * 60 * 60;
 	}
-	public static double HoursToMinutes(double input){
+	public static double HoursToMinutes(double input)
+	{
 		return input * 60;
 	}
-	public static double abs(double d){
+	public static double abs(double d)
+	{
 	    return (d <= 0) ? 0 - d : d;
 	}
-    public static int abs(int i){
+    public static int abs(int i)
+	{
         return (i < 0) ? -i : i;
     }
-	public static long abs(long l)  {
+	public static long abs(long l)
+	{
 		return (l < 0) ? -l : l;
 	}
-	public static float abs(float f){
+	public static float abs(float f)
+	{
         return (f <= 0) ? 0 - f : f;
     }
-	public static float percent(int score , int total){
-		float percentage = (score * 100/ total);
+	public static float percent(int score , int total)
+	{
+		float percentage = (score * 100 / total);
 		return percentage;
 	}
-	public static int min(int a, int b){
+	public static int min(int a, int b)
+	{
 		return (a < b) ? a : b; 
 	}
-	public static long min(long a, long b){
+	public static long min(long a, long b)
+	{
 		return (a < b) ? a : b;
 	}
-	public static float min(float a, float b){
+	public static float min(float a, float b)
+	{
 		if (a != a)
 			return a;
 
@@ -339,20 +416,24 @@ public class MathClass {
 			return -(-a - b);
 		return (a < b) ? a : b;
 	}
-	public static double min(double a , double b){
-		if(a != a)
+	public static double min(double a , double b)
+	{
+		if (a != a)
 			return a;
 		if (a == 0 && b == 0)
 			return -(-a - b);
 		return (a < b) ? a : b;
 	}
-	public static int max(int a, int b){
+	public static int max(int a, int b)
+	{
 		return (a > b) ? a : b;
 	} 
-	public static long max(long a, long b){
+	public static long max(long a, long b)
+	{
 		return (a > b) ? a : b;
 	}
-	public static float max(float a, float b){
+	public static float max(float a, float b)
+	{
 		if (a != a)
 			return a;
 
@@ -360,64 +441,81 @@ public class MathClass {
 			return a - -b;
 		return (a > b) ? a : b;
 	}
-	public static double max(double a , double b){
+	public static double max(double a , double b)
+	{
 		if (a != a)
 			return a;
 		if (a == 0 && b == 0)
 			return a - -b;
 		return (a > b) ? a : b;
 	}
-	public static double toRadians(double degrees){
+	public static double toRadians(double degrees)
+	{
 		return (degrees * PI) / 180;
 	}
-	public static double toDegrees(double rads){
+	public static double toDegrees(double rads)
+	{
 		return (rads * 180) / PI;
 	}
-	public static ArrayList<Long> primeFactors(long numbers) {
+	public static ArrayList<Long> primeFactors(long numbers)
+	{
 		ArrayList<Long> list = new ArrayList<>();
 		long n = abs(numbers);
-		for (long i = 2; i <= n / i; i++) {
-			while (n % i == 0) {
+		for (long i = 2; i <= n / i; i++)
+		{
+			while (n % i == 0)
+			{
 				list.add(i);
 				n /= i;
 			}
 		}
-		if (n > 1) {
+		if (n > 1)
+		{
 			list.add(n);
 		}
 	    return list;
 	}
-	public static long factorial(long n){
+	public static long factorial(long n)
+	{
 		long num = abs(n);
 
-		if(num == 1){
+		if (num == 1)
+		{
 			return 1;
-		}else{
+		}
+		else
+		{
 			return num * factorial(num - 1);
 		}
 
 	}
-	public static ArrayList<Long> listFactors(long numbers){
+	public static ArrayList<Long> listFactors(long numbers)
+	{
 		ArrayList<Long> list = new ArrayList<>();
 		long n = abs(numbers);
-		for(long a = 1; a <= n; a++){
-			if(n % a == 0){
+		for (long a = 1; a <= n; a++)
+		{
+			if (n % a == 0)
+			{
 				list.add(a);
 			}
 		}
 		return list;
 
 	}
-	public static boolean isDecimal(double num){
+	public static boolean isDecimal(double num)
+	{
 		boolean result = false;
-		if(num % 1 != 0){
+		if (num % 1 != 0)
+		{
 			result = true;
 		}
 		return result;
 	}
 
 	//Least Common Multiple
-	public static long lcm(long x, long y){
+	public static long lcm(long x, long y)
+	{
 		long a = abs(x);
 		long b = abs(y);
 
@@ -425,7 +523,8 @@ public class MathClass {
 	}
 
     //Greatest Common Divisor
-    public static long gcd(long x, long y){
+    public static long gcd(long x, long y)
+	{
 		long a = abs(x);
 		long b = abs(y);
 
@@ -438,13 +537,16 @@ public class MathClass {
 		return a;
 
     }
-	public static int round(float f){
+	public static int round(float f)
+	{
 		return (int) floor(f + 0.5f);
 	}
-	public static long round(double d){
+	public static long round(double d)
+	{
 		return (long) floor(d + 0.5);
 	}
-	public static double floor(double a){
+	public static double floor(double a)
+	{
 		double x = abs(a);
 		if (! (x < TWO_52) || (long) a == a)
 			return a;
@@ -452,14 +554,16 @@ public class MathClass {
 			return a >= 0 ? 0 * a : -1; 
 	    return a < 0 ? (long) a - 1.0 : (long) a;
 	}
-	public static double ceil(double a){
+	public static double ceil(double a)
+	{
 		return -floor(-a);
 	}
-	public static long GaussSeidel(long n){
+	public static long GaussSeidel(long n)
+	{
 		return (n * (n + 1)) / 2;
 	}
 	// number format
-	private static final NavigableMap<Long, String> suffixes = new TreeMap<> ();
+	private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
 	static {
 		suffixes.put(1_000L, "K");
 		suffixes.put(1_000_000L, "M");
@@ -469,7 +573,8 @@ public class MathClass {
 		suffixes.put(1_000_000_000_000_000_000L, "E");
 	}
 
-	public static String format(long value) {
+	public static String format(long value)
+	{
 		//Long.MIN_VALUE == -Long.MIN_VALUE so we need an adjustment here
 		if (value == Long.MIN_VALUE) return format(Long.MIN_VALUE + 1);
 		if (value < 0) return "-" + format(-value);
@@ -478,26 +583,31 @@ public class MathClass {
 		Map.Entry<Long, String> e = suffixes.floorEntry(value);
 		Long divideBy = e.getKey();
 		String suffix = e.getValue();
- 
+
 		long truncated = value / (divideBy / 10); //the number part of the output times 10
 		boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
 		return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
 	}
-	public static double ulp(double d){
+	public static double ulp(double d)
+	{
 		return Math.ulp(d);
 	}
-	public static float ulp(float f){
+	public static float ulp(float f)
+	{
 		return Math.ulp(f);
 	}
-	public static double log(double x) {
+	public static double log(double x)
+	{
         return 1000.0 * (pow(x, (1 / 1000.0)) - 1);
     }
 
-    public static double log10(double x) {
+    public static double log10(double x)
+	{
         return log(x) / log(10);
     }
-	
-	public static double pow(double x, double y){
+
+	public static double pow(double x, double y)
+	{
 		// Special cases first.
 		if (y == 0)
 			return 1;
@@ -658,8 +768,9 @@ public class MathClass {
 		z = scale(1 - (r - z), n);
 		return negative ? -z : z;
 	}
-	
-	public static double sqrt(double x){
+
+	public static double sqrt(double x)
+	{
 		if (x < 0)
 			return Double.NaN;
 		if (x == 0 || ! (x < Double.POSITIVE_INFINITY))
@@ -703,10 +814,11 @@ public class MathClass {
 			q += q & 1;
 		return Double.longBitsToDouble((q >> 1) + ((exp + 1022L) << 52));
 	}
-	
-	private static double scale(double x, int n){
+
+	private static double scale(double x, int n)
+	{
 		/* if (Configuration.DEBUG && abs(n) >= 2048)
-			throw new InternalError("Assertion failure"); */
+		 throw new InternalError("Assertion failure"); */
 		if (x == 0 || x == Double.NEGATIVE_INFINITY
 			|| ! (x < Double.POSITIVE_INFINITY) || n == 0)
 			return x;
@@ -730,9 +842,64 @@ public class MathClass {
 									| ((long) exp << 52));
 		return x * (1 / TWO_54);
 	}
-	
-	private static final class RandomGenerator {
+
+	private static final class RandomGenerator
+	{
 		static final Random random = new Random();
 	}
-	
+
+	public static double getAverage(double[] x)
+	{
+		if (x == null || x.length == 0)
+			return 0;
+
+		double result = 0;
+		for (double n : x)
+		{
+			result = result + n;
+		}
+		return result / x.length;
+	}
+
+	public static String getAverage(String[] x , int scale)
+	{
+		BigDecimal result = BigDecimal.ZERO;
+		if (x == null || x.length == 0)
+			return "";
+
+		for (String s : x)
+		{
+			if (isNumeric(s))
+			{
+				result = result.add(new BigDecimal(s));
+			}
+			else
+			{
+				return "";
+			}
+		}
+		result = result.divide(new BigDecimal(String.valueOf(x.length)) , scale , RoundingMode.CEILING);
+		return result.toString();
+	}
+	private static boolean isNumeric(final CharSequence cs)
+	{
+        if (isEmpty(cs))
+		{
+            return false;
+        }
+        final int sz = cs.length();
+        for (int i = 0; i < sz; i++)
+		{
+            if (!Character.isDigit(cs.charAt(i)))
+			{
+                return false;
+            }
+        }
+        return true;
+    }
+	private static boolean isEmpty(final CharSequence cs)
+	{
+        return cs == null || cs.length() == 0;
+    }
+
 } 
