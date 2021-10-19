@@ -109,7 +109,7 @@ public class MathClass
 		return RandomGenerator.random.nextDouble();
 	}
 	// find prime numbers
-	public static boolean isPrime(Long n)
+	public static boolean isPrime(long n)
 	{
 		long num = abs(n);
 		if (num == 1)
