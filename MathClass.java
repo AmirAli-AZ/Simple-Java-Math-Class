@@ -23,6 +23,7 @@ public class MathClass
 {
 	
 	public MathClass(){
+		
 	}
 
 	public static final double PI = 3.14159265358979323846;
@@ -109,7 +110,7 @@ public class MathClass
 		return RandomGenerator.random.nextDouble();
 	}
 	// find prime numbers
-	public static boolean isPrime(long n)
+	public static boolean isPrime(Long n)
 	{
 		long num = abs(n);
 		if (num == 1)
@@ -210,7 +211,7 @@ public class MathClass
 	{
 		return Resources.getSystem().getDisplayMetrics().ydpi;
 	}
-	public static int getDisplayWidthPixels(Context context)
+	public static int getDisplayWidthPixels(Context context) 
 	{
 		return context.getResources().getDisplayMetrics().widthPixels;
 	}
@@ -221,6 +222,9 @@ public class MathClass
 	public static float getDip(Context context, int n)
 	{
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, context.getResources().getDisplayMetrics());
+	}
+	public static float getDensity(Context context){
+		return context.getResources().getDisplayMetrics().density;
 	}
 	public static int getStatusBarHeight(Context context)
 	{ 
