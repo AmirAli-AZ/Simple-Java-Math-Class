@@ -1,4 +1,3 @@
-package com.math;
 
 import java.util.Random;
 import android.content.Context;
