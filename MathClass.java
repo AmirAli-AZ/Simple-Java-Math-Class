@@ -1,3 +1,4 @@
+package com.math;
 
 import java.util.Random;
 import android.content.Context;
@@ -20,10 +21,9 @@ import java.math.RoundingMode;
 
 public class MathClass
 {
-	
-	public MathClass(){
-		
-	}
+
+	public MathClass()
+	{}
 
 	public static final double PI = 3.14159265358979323846;
 	public static final double E = 2.7182818284590452354;
@@ -222,7 +222,8 @@ public class MathClass
 	{
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, n, context.getResources().getDisplayMetrics());
 	}
-	public static float getDensity(Context context){
+	public static float getDensity(Context context)
+	{
 		return context.getResources().getDisplayMetrics().density;
 	}
 	public static int getStatusBarHeight(Context context)
@@ -859,7 +860,7 @@ public class MathClass
 		final int length = x.length;
 		if (x == null || length == 0)
 			return 0;
-		if(length == 1)
+		if (length == 1)
 			return x[0];
 		double result = 0;
 		for (double n : x)
@@ -875,13 +876,15 @@ public class MathClass
 		final int length = x.length;
 		if (x == null || length == 0)
 			return "";
-		if(length == 1){
-			if(isCreatable(x[0]))
+		if (length == 1)
+		{
+			if (isCreatable(x[0]))
 				return x[0];
 			else
 				return "";
 		}
-		for (String s : x){
+		for (String s : x)
+		{
 			if (isCreatable(s))
 				result = result.add(new BigDecimal(s));
 			else
@@ -901,8 +904,10 @@ public class MathClass
         return cs == null || cs.length() == 0;
     }
 
-	public static boolean isCreatable(final String str) {
-        if (isEmpty(str)) {
+	public static boolean isCreatable(final String str)
+	{
+        if (isEmpty(str))
+		{
             return false;
         }
         final char[] chars = str.toCharArray();
@@ -913,27 +918,35 @@ public class MathClass
         boolean foundDigit = false;
         // deal with any possible sign up front
         final int start = chars[0] == '-' || chars[0] == '+' ? 1 : 0;
-        if (sz > start + 1 && chars[start] == '0' && !contains(str, '.')) { // leading 0, skip if is a decimal number
-            if (chars[start + 1] == 'x' || chars[start + 1] == 'X') { // leading 0x/0X
+        if (sz > start + 1 && chars[start] == '0' && !contains(str, '.'))
+		{ // leading 0, skip if is a decimal number
+            if (chars[start + 1] == 'x' || chars[start + 1] == 'X')
+			{ // leading 0x/0X
                 int i = start + 2;
-                if (i == sz) {
+                if (i == sz)
+				{
                     return false; // str == "0x"
                 }
                 // checking hex (it can't be anything else)
-                for (; i < chars.length; i++) {
+                for (; i < chars.length; i++)
+				{
                     if ((chars[i] < '0' || chars[i] > '9')
                         && (chars[i] < 'a' || chars[i] > 'f')
-                        && (chars[i] < 'A' || chars[i] > 'F')) {
+                        && (chars[i] < 'A' || chars[i] > 'F'))
+					{
                         return false;
                     }
                 }
                 return true;
 			}
-            if (Character.isDigit(chars[start + 1])) {
+            if (Character.isDigit(chars[start + 1]))
+			{
 				// leading 0, but not hex, must be octal
 				int i = start + 1;
-				for (; i < chars.length; i++) {
-					if (chars[i] < '0' || chars[i] > '7') {
+				for (; i < chars.length; i++)
+				{
+					if (chars[i] < '0' || chars[i] > '7')
+					{
 						return false;
 					}
 				}
@@ -945,50 +958,69 @@ public class MathClass
         int i = start;
         // loop to the next to last char or to the last char if we need another digit to
         // make a valid number (e.g. chars[0..5] = "1234E")
-        while (i < sz || i < sz + 1 && allowSigns && !foundDigit) {
-            if (chars[i] >= '0' && chars[i] <= '9') {
+        while (i < sz || i < sz + 1 && allowSigns && !foundDigit)
+		{
+            if (chars[i] >= '0' && chars[i] <= '9')
+			{
                 foundDigit = true;
                 allowSigns = false;
 
-            } else if (chars[i] == '.') {
-                if (hasDecPoint || hasExp) {
+            }
+			else if (chars[i] == '.')
+			{
+                if (hasDecPoint || hasExp)
+				{
                     // two decimal points or dec in exponent
                     return false;
                 }
                 hasDecPoint = true;
-            } else if (chars[i] == 'e' || chars[i] == 'E') {
+            }
+			else if (chars[i] == 'e' || chars[i] == 'E')
+			{
                 // we've already taken care of hex.
-                if (hasExp) {
+                if (hasExp)
+				{
                     // two E's
                     return false;
                 }
-                if (!foundDigit) {
+                if (!foundDigit)
+				{
                     return false;
                 }
                 hasExp = true;
                 allowSigns = true;
-            } else if (chars[i] == '+' || chars[i] == '-') {
-                if (!allowSigns) {
+            }
+			else if (chars[i] == '+' || chars[i] == '-')
+			{
+                if (!allowSigns)
+				{
                     return false;
                 }
                 allowSigns = false;
                 foundDigit = false; // we need a digit after the E
-            } else {
+            }
+			else
+			{
                 return false;
             }
             i++;
         }
-        if (i < chars.length) {
-            if (chars[i] >= '0' && chars[i] <= '9') {
+        if (i < chars.length)
+		{
+            if (chars[i] >= '0' && chars[i] <= '9')
+			{
                 // no type qualifier, OK
                 return true;
             }
-            if (chars[i] == 'e' || chars[i] == 'E') {
+            if (chars[i] == 'e' || chars[i] == 'E')
+			{
                 // can't have an E at the last byte
                 return false;
             }
-            if (chars[i] == '.') {
-                if (hasDecPoint || hasExp) {
+            if (chars[i] == '.')
+			{
+                if (hasDecPoint || hasExp)
+				{
                     // two decimal points or dec in exponent
                     return false;
                 }
@@ -999,11 +1031,13 @@ public class MathClass
                 && (chars[i] == 'd'
 				|| chars[i] == 'D'
 				|| chars[i] == 'f'
-				|| chars[i] == 'F')) {
+				|| chars[i] == 'F'))
+			{
                 return foundDigit;
             }
             if (chars[i] == 'l'
-                || chars[i] == 'L') {
+                || chars[i] == 'L')
+			{
                 // not allowing L with an exponent or decimal point
                 return foundDigit && !hasExp && !hasDecPoint;
             }
@@ -1014,40 +1048,59 @@ public class MathClass
         // found digit it to make sure weird stuff like '.' and '1E-' doesn't pass
         return !allowSigns && foundDigit;
     }
-	private static boolean contains(final CharSequence seq, final int searchChar) {
-        if (isEmpty(seq)) {
+	private static boolean contains(final CharSequence seq, final int searchChar)
+	{
+        if (isEmpty(seq))
+		{
             return false;
         }
         return indexOf(seq, searchChar, 0) >= 0;
     }
-	private static int indexOf(final CharSequence cs, final int searchChar, int start) {
-        if (cs instanceof String) {
+	private static int indexOf(final CharSequence cs, final int searchChar, int start)
+	{
+        if (cs instanceof String)
+		{
             return ((String) cs).indexOf(searchChar, start);
         }
         final int sz = cs.length();
-        if (start < 0) {
+        if (start < 0)
+		{
             start = 0;
         }
-        if (searchChar < Character.MIN_SUPPLEMENTARY_CODE_POINT) {
-            for (int i = start; i < sz; i++) {
-                if (cs.charAt(i) == searchChar) {
+        if (searchChar < Character.MIN_SUPPLEMENTARY_CODE_POINT)
+		{
+            for (int i = start; i < sz; i++)
+			{
+                if (cs.charAt(i) == searchChar)
+				{
                     return i;
                 }
             }
             return -1;
         }
         //supplementary characters (LANG1300)
-        if (searchChar <= Character.MAX_CODE_POINT) {
+        if (searchChar <= Character.MAX_CODE_POINT)
+		{
             final char[] chars = Character.toChars(searchChar);
-            for (int i = start; i < sz - 1; i++) {
+            for (int i = start; i < sz - 1; i++)
+			{
                 final char high = cs.charAt(i);
                 final char low = cs.charAt(i + 1);
-                if (high == chars[0] && low == chars[1]) {
+                if (high == chars[0] && low == chars[1])
+				{
                     return i;
                 }
             }
         }
         return -1;
     }
+	public static long polygonalAngles(int sides)
+	{
+		return ((sides - 2) * 180);
+	}
+	public static double polygonalAngle(int sides)
+	{
+		return (polygonalAngles(sides) / sides);
+	}
 
 } 
