@@ -1102,5 +1102,19 @@ public class MathClass
 	{
 		return (polygonalAngles(sides) / sides);
 	}
+	/*
+	 This method actually uses the Pythagorean relation, enter at least the size of the two sides
+	*/
+	public static double getUnknownRightTriangleSide(double t1 , double t2) {
+		double max = max(t1 , t2);
+		double min = min(t1 , t2);
+		
+		/*
+		max² = min² + x²
+		max - min = x²
+		√(max - min) = x
+		*/
+		return sqrt(pow(max , 2) - pow(min , 2));
+	}
 
 } 
